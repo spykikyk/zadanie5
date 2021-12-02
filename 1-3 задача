@@ -1,0 +1,79 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+
+void print_matrix(int** array, int n, int m) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << array[i][j] << " ";
+		}cout << endl;
+	}
+}
+void random_matrix(int** array, int n, int m) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			array[i][j] = rand() % 100;
+		}
+	}
+}
+void stroki(int** array, int n, int m, int p, int v) {
+	for (int i = 0; i < n; i++) {
+			int temp = array[p][i];
+			array[p][i] = array[v][i];
+			array[v][i] = temp;
+		}
+}
+void vtoroe_zadanie(int** array, int n, int m, int X) {
+	int counter = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (array[i][j] == X) {
+				counter += 1;
+			}
+		}
+	}
+	cout << counter << endl;
+}
+
+void sum_elementov(int** array, int n, int m) {
+	for (int j = 0; j < m; j++) {
+		int sum = 0;
+		for (int i = 0; i < n; i++) {
+			sum += array[i][j];
+		}
+		cout << "Cтолбец №" << j << ": " << sum << endl;
+	}
+	for (int i = 0; i < n; i++)
+		int sum = 0;
+}
+
+
+int main() {
+	srand(time(NULL));
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите количество строк и столбцов: " << endl;
+	int n, m;
+	cin >> n >> m;
+	int** array = new int* [n];
+	for (int i = 0; i < n; i++) {
+		array[i] = new int[m];
+	}
+	cout << endl;
+	random_matrix(array, n, m);
+	print_matrix(array, n, m);
+	cout << endl;
+	cout << "Введите номера строк: " << endl;
+	int p, v;
+	cin >> p >> v;
+	cout << endl;
+	stroki(array, n, m, p, v);
+	print_matrix(array, n, m);
+	cout << endl;
+	cout << "Введите значение элемента: " << endl;
+	int X;
+	cin >> X;
+	cout << endl;
+	vtoroe_zadanie(array, n, m, X);
+	cout << endl;
+	sum_elementov(array, n, m);
+}
